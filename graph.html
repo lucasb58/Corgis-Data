@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% set active_page = "home" %}
+
+{% block title %}Response{% endblock %}
+
+
+
+{% block content %}
+	<h1 class="heading" >Japanese Food Recommendations Form</h1>
+ 	
+ 	<div class = "center" >
+		<img src= "/static/Jap_Food.jpg" alt= "Image of Japanese Food">
+	</div>
+	
+	<div>
+ 		<h2 class ="heading"> Your Recommendation</h2>
+  		<p class= "heading"> You should try {{ response }}</p>
+  	</div>	
+
+{% endblock %}

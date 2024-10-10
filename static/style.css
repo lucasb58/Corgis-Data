@@ -1,0 +1,21 @@
+#content {
+     margin-left: 20px;
+}
+
+body{
+	background-color:rgb(222, 224, 227);
+}
+
+.heading {
+text-align: center;
+font-family: "Lucida Console", monospace;
+}
+
+p{
+font-family: "Lucida Console", monospace;
+}
+
+.center{
+margin: auto;
+width: 50%;
+}
