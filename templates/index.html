@@ -11,7 +11,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <title>{% block title %}{% endblock %} - Japanese Food Recommendations</title>
+  <title>{% block title %}{% endblock %} - Data on SAT Scores</title>
+  
+  <!-- navbar -->
+  
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">My Website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a {% if active_page == "home" %} class="nav-link active"{% else %}class="nav-link"{% endif %} href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a {% if active_page == "graph" %} class="nav-link active"{% else %}class="nav-link"{% endif %} href="/graph">Graph</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
   
   </head>
   <body>
