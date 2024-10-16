@@ -7,47 +7,48 @@
 
 
 {% block content %}
+
+<h1> Math Graph </h1>
+<head>
 <script>
-
-window.onload = function() {
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      axisX:{
+        title: "Years between 2005- 2015",
+        interval: 50
+     },
+	 
+	axisY:{
+        title: "Scores",
+        interval: 50
+     },
+      data: [
+      {
+        type: "column",
+        dataPoints: [
+        { x: 100, y: 71 },
+        { x: 200, y: 55},
+        { x: 300, y: 50 },
+        { x: 400, y: 65 },
+        { x: 500, y: 95 },
+        { x: 600, y: 68 },
+        { x: 700, y: 28 },
+        { x: 800, y: 34 },
+        { x: 900, y: 14}
+        ]
+      }
+      ]
+    });
  
- 
-var dataPoints = [];
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	theme: "light2",
-	title: {
-		text: "Daily Sales Data"
-	},
-	axisY: {
-		title: "Units",
-		titleFontSize: 24,
-		includeZero: true
-	},
-	data: [{
-		type: "column",
-		yValueFormatString: "#,### Units",
-		dataPoints: dataPoints
-	}]
-});
- 
-function addData(data) {
-	for (var i = 0; i < data.length; i++) {
-		dataPoints.push({
-			x: new Date(data[i].date),
-			y: data[i].units
-		});
-	}
-	chart.render();
- 
-}
- 
-$.getJSON("https://canvasjs.com/data/gallery/javascript/daily-sales-data.json", addData);
- 
-}    
-
-</script>     
-
+    chart.render();
+  }
+  </script>
+  <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
 
 {% endblock %}
