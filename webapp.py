@@ -12,6 +12,8 @@ def render_main():
     
 @app.route("/graphmath")
 def render_main_graph_math():
+    mathscore = get_math_scores()
+
     return render_template('graphmath.html')
     
 @app.route("/graphverbal")
@@ -19,13 +21,24 @@ def render_main_graph_reading():
     return render_template('graphverbal.html')
     
 def get_math_scores():
-	with open('school_scores(1).json') as scores_data:
-    	sat_scores = json.load(scores_data)
-		for data in scores_data:
- 			if data['Year'] == 2005:       
- 				if data['State'][]== CA:
-	print(data[mathscore])       
-        
+    with open('school_scores.json') as scores_data:
+        sat_scores = json.load(scores_data)
+    mathscore={}
+    for m in sat_scores:      
+        if m['State']['Code']== 'CA':
+            mathscore[m['Year']] = m['Total']['Math']
+    print(mathscore)             
+    return mathscore             
+	
+def get_years():
+    with open('school_scores.json') as scores_data:
+        sat_scores = json.load(scores_data)
+    year=0
+    for y in sat_scores:
+        if y['Year'] >= 2005: 
+            year = y['']
+    print(year)             
+    return year        
     
 
 if __name__=="__main__":
