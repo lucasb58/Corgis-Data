@@ -28,9 +28,15 @@ def get_math_scores():
         if m['State']['Code']== 'CA':
             mathscore[m['Year']] = m['Total']['Math']
     print(mathscore)
+    
+    date = "" 
+    for key in mathscore.items():
+    	date = key.strftime("%Y")
+    print(date)	
+    
     graph_math_points= ""
-    for key, value in mathscore.items():
-        graph_math_points= graph_math_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')
+    for value in mathscore.items() and date:
+        graph_math_points= graph_math_points + Markup('{ x: ' + str(date) + ', y: ' + str(value) + ' },')
         
     return graph_math_points 
     
