@@ -13,8 +13,9 @@ def render_main():
 @app.route("/graphmath")
 def render_main_graph_math():
     mathscore = get_math_scores()
-
-    return render_template('graphmath.html')
+    key = mathscore.keys()
+    value = mathscore.values()
+    return render_template('graphmath.html', x = key, y = value)
     
 @app.route("/graphverbal")
 def render_main_graph_reading():
