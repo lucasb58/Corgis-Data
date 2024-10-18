@@ -7,11 +7,41 @@
 
 
 {% block content %}
-	<h1 class="heading" >Japanese Food Recommendations Form</h1>
- 	
- 	
- 		
-  		<p class= "heading"> You should try {{ response }}</p>
+	<h1> Math Graph </h1>
+<head>
+<script>
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      axisX:{
+        title: "Years between 2005- 2015",
+		xValueType: "dateTime",
+        interval: 1
+     },
+	 
+	axisY:{
+        title: "Scores",
+		interval: 800
+     },
+      data: [
+      {
+        type: "column",
+        dataPoints: [
+        {{graph_points}}
+        ]
+      }
+      ]
+    });
+ 
+    chart.render();
+  }
+  </script>
+  <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
 
 
 {% endblock %}

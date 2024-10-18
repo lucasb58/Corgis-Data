@@ -16,18 +16,20 @@
     {
       axisX:{
         title: "Years between 2005- 2015",
-        interval: 50
+		xValueType: "dateTime",
+		valueFormatString: "YYYY" ,
+        interval: 1
      },
 	 
 	axisY:{
         title: "Scores",
-        interval: 50
+		interval: 800
      },
       data: [
       {
         type: "column",
         dataPoints: [
-        { {x, y} },
+        {{graph_math_points}}
         ]
       }
       ]

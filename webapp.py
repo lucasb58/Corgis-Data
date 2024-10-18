@@ -13,9 +13,8 @@ def render_main():
 @app.route("/graphmath")
 def render_main_graph_math():
     mathscore = get_math_scores()
-    key = mathscore.keys()
-    value = mathscore.values()
-    return render_template('graphmath.html', x = key, y = value)
+    return render_template('graphmath.html', graph_math_points = mathscore)
+    
     
 @app.route("/graphverbal")
 def render_main_graph_reading():
@@ -28,18 +27,26 @@ def get_math_scores():
     for m in sat_scores:      
         if m['State']['Code']== 'CA':
             mathscore[m['Year']] = m['Total']['Math']
-    print(mathscore)             
-    return mathscore             
-	
-def get_years():
+    print(mathscore)
+    graph_math_points= ""
+    for key, value in mathscore.items():
+        graph_math_points= graph_math_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')
+        
+    return graph_math_points 
+    
+def get_math_scores():
     with open('school_scores.json') as scores_data:
         sat_scores = json.load(scores_data)
-    year=0
-    for y in sat_scores:
-        if y['Year'] >= 2005: 
-            year = y['']
-    print(year)             
-    return year        
+    verbalscore={}
+    for v in sat_scores:      
+        if v['State']['Code']== 'CA':
+            verbalscore[v['Year']] = v['Total']['Math']
+    print(verbalscore)
+    graph_verbal_points= ""
+    for key, value in verbalscore.items():
+        graph_verbal_points = graph_verbal_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')
+        
+    return graph_verbal_points  
     
 
 if __name__=="__main__":
