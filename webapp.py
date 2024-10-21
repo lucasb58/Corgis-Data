@@ -3,6 +3,7 @@ from markupsafe import Markup
 
 import os
 import json
+from datetime import datetime
 
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
 
@@ -29,18 +30,17 @@ def get_math_scores():
             mathscore[m['Year']] = m['Total']['Math']
     print(mathscore)
     
-    date = "" 
-    for key in mathscore.items():
-    	date = key.strftime("%Y")
-    print(date)	
+    
+    """for key in mathscore.items():
+    	key = key.strftime("%Y")
+    print(key)"""
     
     graph_math_points= ""
-    for value in mathscore.items() and date:
-        graph_math_points= graph_math_points + Markup('{ x: ' + str(date) + ', y: ' + str(value) + ' },')
-        
+    for key, value in mathscore.items():
+        graph_math_points= graph_math_points + Markup('{ x: ' + str(key.strftime("%Y")) + ', y: ' + str(value) + ' },')        
     return graph_math_points 
     
-def get_math_scores():
+def get_verbal_scores():
     with open('school_scores.json') as scores_data:
         sat_scores = json.load(scores_data)
     verbalscore={}
