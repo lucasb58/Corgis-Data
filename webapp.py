@@ -44,11 +44,11 @@ def get_verbal_scores():
     verbalscore={}
     for v in sat_scores:      
         if v['State']['Code']== 'CA':
-            verbalscore[v['Year']] = v['Total']['Verbal']
+            verbalscore[ "label" :v['Year']] = v['Total']['Verbal']
     print(verbalscore)
     graph_verbal_points= ""
-    for key, value in verbalscore.items():
-        graph_verbal_points = graph_verbal_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')
+    for label, value in verbalscore.items():
+        graph_verbal_points = graph_verbal_points + Markup('{ x: ' + str(label) + ', y: ' + str(value) + ' },')
     return graph_verbal_points  
     
 
