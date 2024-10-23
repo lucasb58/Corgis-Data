@@ -21,6 +21,17 @@ def render_main_graph_verbal():
     verbalscore = get_verbal_scores()
     return render_template('graphverbal.html', graph_verbal_points = verbalscore)    
     
+def get_state_options():
+    with open('school_scores.json') as demographics_data:
+        state = json.load(demographics_data)
+    statecode=[]
+    for s in state:
+        if s["State"] not in states:
+            states.append(c["State"])
+    options=""
+    for s in states:
+        options += Markup("<option value=\"" + s + "\">" + s + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
+    return options
 
 def get_math_scores():
     with open('school_scores.json') as scores_data:
@@ -28,14 +39,11 @@ def get_math_scores():
     mathscore={}
     for m in sat_scores:      
         if m['State']['Code']== 'CA':
-            mathscore[m['Year']] = m['Total']['Math']
+            mathscore[str(m['Year'])] = m['Total']['Math']
     print(mathscore)
-    """for key in mathscore.items():
-    	key = key.strftime("%Y")
-    print(key)"""
     graph_math_points= ""
     for key, value in mathscore.items():
-        graph_math_points= graph_math_points + Markup('{ x: ' + str(key.strftime("%Y")) + ', y: ' + str(value) + ' },')        
+        graph_math_points= graph_math_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')        
     return graph_math_points 
     
 def get_verbal_scores():
@@ -44,11 +52,11 @@ def get_verbal_scores():
     verbalscore={}
     for v in sat_scores:      
         if v['State']['Code']== 'CA':
-            verbalscore[ "label" :v['Year']] = v['Total']['Verbal']
-    print(verbalscore)
+            verbalscore[v['Year']] = v['Total']['Verbal']
+    print(verbalscore)  
     graph_verbal_points= ""
-    for label, value in verbalscore.items():
-        graph_verbal_points = graph_verbal_points + Markup('{ x: ' + str(label) + ', y: ' + str(value) + ' },')
+    for key, value in verbalscore.items():
+        graph_verbal_points = graph_verbal_points + Markup('{ x: ' + str(key) + ', y: ' + str(value) + ' },')
     return graph_verbal_points  
     
 

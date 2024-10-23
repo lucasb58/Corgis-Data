@@ -7,25 +7,28 @@
 
 
 {% block content %}
-	<h1> Math Graph </h1>
-<head>
+	<h1> Verbal Graph </h1>
+<script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
 <script>
   window.onload = function () {
     var chart = new CanvasJS.Chart("chartContainer",
     {
       axisX:{
-        title: "Years between 2005-2015",
-		xValueFormatString: "YYYY",
-        interval: 1
+        title: "Years between 2005-2015", 
+		interval: 1, 
+		valueFormatString: "####"
      },
 	 
 	axisY:{
-        title: " Verbal Scores",
+        title: "Scores",
 		interval: 800
      },
       data: [
       {
         type: "column",
+		xValueFormatString: "####",
         dataPoints: [
         {{graph_verbal_points}}
         ]
@@ -36,12 +39,6 @@
     chart.render();
   }
   </script>
-  <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-</head>
-<body>
-  <div id="chartContainer" style="height: 300px; width: 100%;">
-  </div>
-</body>
 
 
 {% endblock %}
