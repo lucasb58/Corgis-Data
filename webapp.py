@@ -18,19 +18,22 @@ def render_main_graph_math():
 
 @app.route("/graphverbal")
 def render_main_graph_verbal():
+    states = get_state_options()
+    state = request.args.get('state')
     verbalscore = get_verbal_scores()
-    return render_template('graphverbal.html', graph_verbal_points = verbalscore)    
+    return render_template('graphverbal.html', graph_verbal_points = verbalscore, state_options=state)    
     
 def get_state_options():
-    with open('school_scores.json') as demographics_data:
-        state = json.load(demographics_data)
-    statecode=[]
+    with open('school_scores.json') as scores_data:
+        state = json.load(scores_data)
+    states=[]
     for s in state:
-        if s["State"] not in states:
-            states.append(c["State"])
+        if s["State"]["Code"] not in states:
+            states.append(s["State"])
     options=""
     for s in states:
         options += Markup("<option value=\"" + s + "\">" + s + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
+    print(options)
     return options
 
 def get_math_scores():
