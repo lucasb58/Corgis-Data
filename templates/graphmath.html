@@ -8,13 +8,19 @@
 
 {% block content %}
 
-<h1> Math Graph </h1>
+<h1 class ="heading"> Math Graph </h1>
 <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 
- <div class="col-sm-3">.col-sm-3</div>
+<form>
+          <select name="state"> <!-- add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
+            {{ state_options }}
+          </select>
+          <br><br>
+          <input type="submit" value="Find State's Score">
+</form>
   <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-<div class="col-md-6"> 
+ 
 <script>
   window.onload = function () {
     var chart = new CanvasJS.Chart("chartContainer",
@@ -26,7 +32,7 @@
      },
 	 
 	axisY:{
-        title: "Scores",
+        title: " Math Scores",
 		interval: 800
      },
       data: [
@@ -45,5 +51,4 @@
   </script>
 </div>    
 
- <div class="col-sm-3">.col-sm-3</div>
 {% endblock %}
