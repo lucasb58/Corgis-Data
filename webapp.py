@@ -3,9 +3,9 @@ from markupsafe import Markup
 
 import os
 import json
-from datetime import datetime
 
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
+
 
 @app.route("/")
 def render_main():
@@ -14,15 +14,21 @@ def render_main():
 @app.route("/graphmath")
 def render_main_graph_math():
     states = get_state_options()
-    state = request.args.get('state')
     mathscore = get_math_scores(state)
+    state = request.args.get('state')
+    print(state)
     return render_template('graphmath.html', graph_math_points = mathscore,  state_options=states)
 
 @app.route("/graphverbal")
 def render_main_graph_verbal():
     states = get_state_options()
-    state = request.args.get('state')
+    state = ""
+    if 'state' in request.args:
+        state = request.args['state']
+    else: 
+      state = 'AL'
     verbalscore = get_verbal_scores(state)
+    print(state)
     place = "Verbal Scores in " + state + ", from 2005 to 2015."
     return render_template('graphverbal.html', graph_verbal_points = verbalscore, state_options=states, title=place)    
     
