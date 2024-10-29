@@ -1,10 +1,8 @@
 {% extends "index.html" %}
 
-{% set active_page = "graphmath" %}
+{% set active_page = "mathscorebystate" %}
 
 {% block title %}Sat Math Scores {% endblock %}
-
-
 
 {% block content %}
 
@@ -20,35 +18,6 @@
 </form>
   <h2 class="heading"> {{ title }} </h2>	
   <br>
-  <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<script>
-  window.onload = function () {
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-      axisX:{
-        title: "Years between 2005- 2015", 
-		interval: 1, 
-		valueFormatString: "####"
-     },
-	 
-	axisY:{
-        title: " Math Scores",
-		interval: 800
-     },
-      data: [
-      {
-        type: "column",
-		xValueFormatString: "####",
-        dataPoints: [
-        {{graph_math_points}}
-        ]
-      }
-      ]
-    });
  
-    chart.render();
-  }
-  </script>
-</div>    
 
 {% endblock %}
