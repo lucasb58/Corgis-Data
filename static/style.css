@@ -22,6 +22,12 @@ padding: 10px;
 .images{
 margin-left: auto;
 margin-right: auto;
-padding: 10px;
-width:50%
+width: 35%
 }
+
+.green{
+	background-color:MediumSeaGreen;
+	color:white;
+}
+
+
