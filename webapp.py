@@ -50,7 +50,7 @@ def render_main_mathscorebystates():
         state = 'AL'
     print(state)    
     averagescore = get_avg_math_score(state)
-    line = "The average math score in " + state + ", is " + str(averagescore) + " from 2005 to 2015."
+    line = "The average math score in " + state + " is " + str(averagescore) + " from 2005 to 2015."
     return render_template('mathscorebystate.html', title=line, state_options=states)
 
 #render page 3
@@ -64,7 +64,7 @@ def render_main_verbalscorebystates():
         state = 'AL'
     print(state)    
     averagescore = get_avg_verbal_score(state)
-    line = "The average math score in " + state + ", is " + str(averagescore) + " from 2005 to 2015."
+    line = "The average math score in " + state + " is " + str(averagescore) + " from 2005 to 2015."
     return render_template('verbalscorebystate.html', title=line, state_options=states)         
  
 #select state 
